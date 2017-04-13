@@ -21,18 +21,29 @@ public class CTR {
     private static BufferedReader bfKey;
     private static AES myAES = new AES();
 
+    /**
+     * Method to do CTR mode block encryption.
+     *
+     * @param pathFile file input path
+     * @param pathKey key file path
+     * @param pathOutput file output path
+     * @throws InvalidKeyException
+     * @throws NoSuchAlgorithmException
+     * @throws NoSuchPaddingException
+     * @throws IllegalBlockSizeException
+     * @throws BadPaddingException
+     * @throws IOException
+     */
     public void doEncryption(String pathFile, String pathKey, String pathOutput) throws InvalidKeyException, NoSuchAlgorithmException, NoSuchPaddingException, IllegalBlockSizeException, BadPaddingException, IOException {
         // Initiate I/O stream
-        fi = new FileInputStream(pathFile);
-        fo = new FileOutputStream(pathOutput);
-        bfKey = new BufferedReader(new FileReader(pathKey));
+        initIOStream(pathFile, pathKey, pathOutput);
 
         // Read the key from the file, convert it to byte[] & set AES key
         String key = bfKey.readLine();
-        System.out.println("Key: " + key);
         byte[] keyByte = Util.hexToByte(key);
         myAES.setKey(keyByte);
         byte[] nonce = Util.hexToByte(nonceString);
+        System.out.println("Key: " + key);
         System.out.println("Nonce: " + nonceString);
 
         // Initiate ArrayList of plaintext & ciphertext result
@@ -92,29 +103,35 @@ public class CTR {
         for (int i = 0; i < ciphertext.size(); i++) {
             System.out.print(Util.byteToHex(ciphertext.get(i)));
         }
+        System.out.println();
 
-        // Write to file
-        for (int i = 0; i < ciphertext.size(); i++) {
-            fo.write(ciphertext.get(i));
-        }
-
-        fi.close();
-        fo.close();
-        bfKey.close();
+        writeToFile(ciphertext);
+        closeIOStream();
     }
 
+    /**
+     * Method to do the CTR mode block decryption.
+     *
+     * @param pathFile file input path
+     * @param pathKey key file path
+     * @param pathOutput file output path
+     * @throws NoSuchPaddingException
+     * @throws NoSuchAlgorithmException
+     * @throws IllegalBlockSizeException
+     * @throws BadPaddingException
+     * @throws InvalidKeyException
+     * @throws IOException
+     */
     public void doDecryption(String pathFile, String pathKey, String pathOutput) throws NoSuchPaddingException, NoSuchAlgorithmException, IllegalBlockSizeException, BadPaddingException, InvalidKeyException, IOException {
         // Initiate I/O stream
-        fi = new FileInputStream(pathFile);
-        fo = new FileOutputStream(pathOutput);
-        bfKey = new BufferedReader(new FileReader(pathKey));
+        initIOStream(pathFile, pathKey, pathOutput);
 
         // Read the key from the file, convert it to byte[] & set AES key
         String key = bfKey.readLine();
-        System.out.println("Key: " + key);
         byte[] keyByte = Util.hexToByte(key);
         myAES.setKey(keyByte);
         byte[] nonce = Util.hexToByte(nonceString);
+        System.out.println("Key: " + key);
         System.out.println("Nonce: " + nonceString);
 
         // Initiate ArrayList of ciphertext & plaintext result
@@ -175,11 +192,42 @@ public class CTR {
             System.out.print(Util.byteToHex(plaintext.get(i)));
         }
 
-        // Write to file
-        for (int i = 0; i < plaintext.size(); i++) {
-            fo.write(plaintext.get(i));
-        }
+        writeToFile(plaintext);
+        closeIOStream();
+    }
 
+    /**
+     * Method to initiate the file input/output stream.
+     *
+     * @param pathFile file input path
+     * @param pathKey key file path
+     * @param pathOutput file output path
+     * @throws FileNotFoundException
+     */
+    static void initIOStream(String pathFile, String pathKey, String pathOutput) throws FileNotFoundException {
+        fi = new FileInputStream(pathFile);
+        fo = new FileOutputStream(pathOutput);
+        bfKey = new BufferedReader(new FileReader(pathKey));
+    }
+
+    /**
+     * Method to write the data in bytes to file.
+     *
+     * @param bytes array list of bytes array to be written to file
+     * @throws IOException
+     */
+    static void writeToFile(ArrayList<byte[]> bytes) throws IOException {
+        for (int i = 0; i < bytes.size(); i++) {
+            fo.write(bytes.get(i));
+        }
+    }
+
+    /**
+     * Method to close the file input/output stream.
+     *
+     * @throws IOException
+     */
+    static void closeIOStream() throws IOException {
         fi.close();
         fo.close();
         bfKey.close();
