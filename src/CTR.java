@@ -27,6 +27,7 @@ public class CTR {
      * @param pathFile file input path
      * @param pathKey key file path
      * @param pathOutput file output path
+     * @param trace boolean variable for tracing
      * @throws InvalidKeyException
      * @throws NoSuchAlgorithmException
      * @throws NoSuchPaddingException
@@ -34,7 +35,7 @@ public class CTR {
      * @throws BadPaddingException
      * @throws IOException
      */
-    public void doEncryption(String pathFile, String pathKey, String pathOutput) throws InvalidKeyException, NoSuchAlgorithmException, NoSuchPaddingException, IllegalBlockSizeException, BadPaddingException, IOException {
+    public void doEncryption(String pathFile, String pathKey, String pathOutput, boolean trace) throws InvalidKeyException, NoSuchAlgorithmException, NoSuchPaddingException, IllegalBlockSizeException, BadPaddingException, IOException {
         // Initiate I/O stream
         initIOStream(pathFile, pathKey, pathOutput);
 
@@ -43,8 +44,11 @@ public class CTR {
         byte[] keyByte = Util.hexToByte(key);
         myAES.setKey(keyByte);
         byte[] nonce = Util.hexToByte(nonceString);
-        System.out.println("Key: " + key);
-        System.out.println("Nonce: " + nonceString);
+
+        if (trace) {
+            System.out.println("Key: " + key);
+            System.out.println("Nonce: " + nonceString);
+        }
 
         // Initiate ArrayList of plaintext & ciphertext result
         ArrayList<byte[]> plaintext = new ArrayList<>();
@@ -64,46 +68,62 @@ public class CTR {
         // and 36 bytes can be formed from 16+16+4 = 36 bytes.
         int fileBlockResidue = (int) (fi.getChannel().size() % 16);
 
-        System.out.print("Plaintext (" + fi.getChannel().size() + " byte(s)): ");
+        if (trace) {
+            System.out.print("Plaintext (" + fi.getChannel().size() + " byte(s)): ");
 
-        for (int i = 0; i < plaintext.size(); i++) {
-            if (i == plaintext.size()-1) {
-                if (fileBlockResidue != 0) {
-                    byte[] tempPlaintext = Arrays.copyOfRange(plaintext.get(i), 0, fileBlockResidue);
-                    System.out.print(Util.byteToHex(tempPlaintext));
+            for (int i = 0; i < plaintext.size(); i++) {
+                if (i == plaintext.size()-1) {
+                    if (fileBlockResidue != 0) {
+                        byte[] tempPlaintext = Arrays.copyOfRange(plaintext.get(i), 0, fileBlockResidue);
+                        System.out.print(Util.byteToHex(tempPlaintext));
+                    }
+                } else {
+                    System.out.print(Util.byteToHex(plaintext.get(i)));
                 }
-            } else {
-                System.out.print(Util.byteToHex(plaintext.get(i)));
             }
-        }
 
-        System.out.println("\n============ ENCRYPTION START ============");
+            System.out.println("\n============ ENCRYPTION START ============");
+        }
 
         for (int i = 0; i < plaintext.size(); i++) {
             byte[] encryptKeyNonce = myAES.encrypt(nonce); // encrypt the nonce with the key
             nonce[15] = (byte) (nonce[15]+1); // increase the counter
-            System.out.println("Counter " + i);
-            System.out.println("Hasil Enkripsi AES Nonce & Key: " + Util.byteToHex(encryptKeyNonce));
             byte[] ithCiphertext;
+
+            if (trace) {
+                System.out.println("Counter " + i);
+                System.out.println("Hasil Enkripsi AES Nonce & Key: " + Util.byteToHex(encryptKeyNonce));
+            }
 
             if (i == plaintext.size()-1 && fileBlockResidue != 0) { // check the last block of the file, whether the last block length is odd, not 16 bytes
                 byte[] tempPlaintext = Arrays.copyOfRange(plaintext.get(i), 0, fileBlockResidue); // remove the unused bytes
-                System.out.println("Plaintext ke-" + i + ": " + Util.byteToHex(tempPlaintext));
                 ithCiphertext = Util.xor(tempPlaintext, encryptKeyNonce); // XOR encrypt result with plaintext
+
+                if (trace)
+                    System.out.println("Plaintext ke-" + i + ": " + Util.byteToHex(tempPlaintext));
+
             } else { // when the last block of the file is 16 bytes
-                System.out.println("Plaintext ke-" + i + ": " + Util.byteToHex(plaintext.get(i)));
                 ithCiphertext = Util.xor(plaintext.get(i), encryptKeyNonce); // XOR encrypt result with plaintext
+
+                if (trace)
+                    System.out.println("Plaintext ke-" + i + ": " + Util.byteToHex(plaintext.get(i)));
             }
-            System.out.println("Hasil Enkripsi: " + Util.byteToHex(ithCiphertext));
-            System.out.println("===");
+
             ciphertext.add(ithCiphertext); // add the XOR result to the final ciphertext
+
+            if (trace) {
+                System.out.println("Hasil Enkripsi: " + Util.byteToHex(ithCiphertext));
+                System.out.println("===");
+            }
         }
 
-        System.out.print("Ciphertext lengkap: ");
-        for (int i = 0; i < ciphertext.size(); i++) {
-            System.out.print(Util.byteToHex(ciphertext.get(i)));
+        if (trace) {
+            System.out.print("Ciphertext lengkap: ");
+            for (int i = 0; i < ciphertext.size(); i++) {
+                System.out.print(Util.byteToHex(ciphertext.get(i)));
+            }
+            System.out.println();
         }
-        System.out.println();
 
         writeToFile(ciphertext);
         closeIOStream();
@@ -115,6 +135,7 @@ public class CTR {
      * @param pathFile file input path
      * @param pathKey key file path
      * @param pathOutput file output path
+     * @param trace boolean variable for tracing
      * @throws NoSuchPaddingException
      * @throws NoSuchAlgorithmException
      * @throws IllegalBlockSizeException
@@ -122,7 +143,7 @@ public class CTR {
      * @throws InvalidKeyException
      * @throws IOException
      */
-    public void doDecryption(String pathFile, String pathKey, String pathOutput) throws NoSuchPaddingException, NoSuchAlgorithmException, IllegalBlockSizeException, BadPaddingException, InvalidKeyException, IOException {
+    public void doDecryption(String pathFile, String pathKey, String pathOutput, boolean trace) throws NoSuchPaddingException, NoSuchAlgorithmException, IllegalBlockSizeException, BadPaddingException, InvalidKeyException, IOException {
         // Initiate I/O stream
         initIOStream(pathFile, pathKey, pathOutput);
 
@@ -131,8 +152,11 @@ public class CTR {
         byte[] keyByte = Util.hexToByte(key);
         myAES.setKey(keyByte);
         byte[] nonce = Util.hexToByte(nonceString);
-        System.out.println("Key: " + key);
-        System.out.println("Nonce: " + nonceString);
+
+        if (trace) {
+            System.out.println("Key: " + key);
+            System.out.println("Nonce: " + nonceString);
+        }
 
         // Initiate ArrayList of ciphertext & plaintext result
         ArrayList<byte[]> ciphertext = new ArrayList<>();
@@ -152,44 +176,59 @@ public class CTR {
         // and 36 bytes can be formed from 16+16+4 = 36 bytes.
         int fileBlockResidue = (int) (fi.getChannel().size() % 16);
 
-        System.out.print("Ciphertext (" + fi.getChannel().size() + " byte(s)): ");
+        if (trace) {
+            System.out.print("Ciphertext (" + fi.getChannel().size() + " byte(s)): ");
 
-        for (int i = 0; i < ciphertext.size(); i++) {
-            if (i == ciphertext.size()-1) {
-                if (fileBlockResidue != 0) {
-                    byte[] tempCiphertext = Arrays.copyOfRange(ciphertext.get(i), 0, fileBlockResidue);
-                    System.out.print(Util.byteToHex(tempCiphertext));
+            for (int i = 0; i < ciphertext.size(); i++) {
+                if (i == ciphertext.size()-1) {
+                    if (fileBlockResidue != 0) {
+                        byte[] tempCiphertext = Arrays.copyOfRange(ciphertext.get(i), 0, fileBlockResidue);
+                        System.out.print(Util.byteToHex(tempCiphertext));
+                    }
+                } else {
+                    System.out.print(Util.byteToHex(ciphertext.get(i)));
                 }
-            } else {
-                System.out.print(Util.byteToHex(ciphertext.get(i)));
             }
-        }
 
-        System.out.println("\n============ DECRYPTION START ============");
+            System.out.println("\n============ DECRYPTION START ============");
+        }
 
         for (int i = 0; i < ciphertext.size(); i++) {
             byte[] encryptKeyNonce = myAES.encrypt(nonce); // encrypt the nonce with the key
             nonce[15] = (byte) (nonce[15]+1); // increase the counter
-            System.out.println("Counter " + i);
-            System.out.println("Hasil Enkripsi AES Nonce & Key: " + Util.byteToHex(encryptKeyNonce));
             byte[] ithPlaintext;
+
+            if (trace) {
+                System.out.println("Counter " + i);
+                System.out.println("Hasil Enkripsi AES Nonce & Key: " + Util.byteToHex(encryptKeyNonce));
+            }
 
             if (i == ciphertext.size()-1 && fileBlockResidue != 0) { // check the last block of the file, whether the last block length is odd, not 16 bytes
                 byte[] tempCiphertext = Arrays.copyOfRange(ciphertext.get(i), 0, fileBlockResidue); // remove the unused bytes
-                System.out.println("Ciphertext ke-" + i + ": " + Util.byteToHex(tempCiphertext));
-                ithPlaintext = Util.xor(tempCiphertext, encryptKeyNonce); // XOR encrypt result with plaintext
+                ithPlaintext = Util.xor(tempCiphertext, encryptKeyNonce); // XOR encrypt result with ciphertext
+
+                if (trace)
+                    System.out.println("Ciphertext ke-" + i + ": " + Util.byteToHex(tempCiphertext));
             } else { // when the last block of the file is 16 bytes
-                System.out.println("Ciphertext ke-" + i + ": " + Util.byteToHex(ciphertext.get(i)));
-                ithPlaintext = Util.xor(ciphertext.get(i), encryptKeyNonce); // XOR encrypt result with plaintext
+                ithPlaintext = Util.xor(ciphertext.get(i), encryptKeyNonce); // XOR encrypt result with ciphertext
+
+                if (trace)
+                    System.out.println("Ciphertext ke-" + i + ": " + Util.byteToHex(ciphertext.get(i)));
             }
-            System.out.println("Hasil Dekripsi: " + Util.byteToHex(ithPlaintext));
-            System.out.println("===");
-            plaintext.add(ithPlaintext); // add the XOR result to the final ciphertext
+
+            plaintext.add(ithPlaintext); // add the XOR result to the final plaintext
+
+            if (trace) {
+                System.out.println("Hasil Dekripsi: " + Util.byteToHex(ithPlaintext));
+                System.out.println("===");
+            }
         }
 
-        System.out.print("Plaintext lengkap: ");
-        for (int i = 0; i < plaintext.size(); i++) {
-            System.out.print(Util.byteToHex(plaintext.get(i)));
+        if (trace) {
+            System.out.print("Plaintext lengkap: ");
+            for (int i = 0; i < plaintext.size(); i++) {
+                System.out.print(Util.byteToHex(plaintext.get(i)));
+            }
         }
 
         writeToFile(plaintext);
