@@ -12,7 +12,8 @@ class CTR {
     private static final int BLOCK_SIZE = 16;
     private static long fileSize;
     private static int fileBlockResidue;
-    private static String nonceString = Util.generateRandomHexString(32);
+//    private static String nonceString = Util.generateRandomHexString(32);
+    private static String nonceString = "12345678123456781234567812345678";
     private static FileInputStream fi;
     private static FileOutputStream fo;
     private static BufferedReader bfKey;
