@@ -1,9 +1,4 @@
-import javax.crypto.BadPaddingException;
-import javax.crypto.IllegalBlockSizeException;
-import javax.crypto.NoSuchPaddingException;
 import java.io.*;
-import java.security.InvalidKeyException;
-import java.security.NoSuchAlgorithmException;
 import java.util.ArrayList;
 import java.util.Arrays;
 
@@ -12,14 +7,17 @@ import java.util.Arrays;
  *
  * @author Hasandi Patriawan, Kevin Ega Pratama, Apr 2017
  */
-public class CTR {
+class CTR {
 
     private static final int BLOCK_SIZE = 16;
+    private static long fileSize;
+    private static int fileBlockResidue;
     private static String nonceString = Util.generateRandomHexString(32);
     private static FileInputStream fi;
     private static FileOutputStream fo;
     private static BufferedReader bfKey;
     private static AES myAES = new AES();
+    private static boolean trace = false;
 
     /**
      * Method to do CTR mode block encryption.
@@ -27,17 +25,30 @@ public class CTR {
      * @param pathFile file input path
      * @param pathKey key file path
      * @param pathOutput file output path
-     * @param trace boolean variable for tracing
-     * @throws InvalidKeyException
-     * @throws NoSuchAlgorithmException
-     * @throws NoSuchPaddingException
-     * @throws IllegalBlockSizeException
-     * @throws BadPaddingException
-     * @throws IOException
      */
-    public void doEncryption(String pathFile, String pathKey, String pathOutput, boolean trace) throws InvalidKeyException, NoSuchAlgorithmException, NoSuchPaddingException, IllegalBlockSizeException, BadPaddingException, IOException {
+    void doEncryption(String pathFile, String pathKey, String pathOutput) throws Exception {
         // Initiate I/O stream
         initIOStream(pathFile, pathKey, pathOutput);
+
+        // Get the file size in bytes
+        fileSize = fi.getChannel().size() % BLOCK_SIZE;
+
+        // Calculate the residue, a number of bytes which represents the size of last block
+        // from the file. For example, the residue from 36 bytes file is 4 because 36 mod 16 = 4,
+        // and 36 bytes can be formed from 16+16+4 = 36 bytes.
+        fileBlockResidue = (int) (fileSize % 16);
+
+        // Initiate ArrayList of plaintext & ciphertext result
+        ArrayList<byte[]> plaintext = new ArrayList<>();
+        ArrayList<byte[]> ciphertext = new ArrayList<>();
+
+        // Read all plaintext input
+        readFileBytes(plaintext);
+
+        if (trace) {
+            System.out.print("Plaintext (" + fi.getChannel().size() + " byte(s)): ");
+            printFileBytes(plaintext);
+        }
 
         // Read the key from the file, convert it to byte[] & set AES key
         String key = bfKey.readLine();
@@ -48,45 +59,11 @@ public class CTR {
         if (trace) {
             System.out.println("Key: " + key);
             System.out.println("Nonce: " + nonceString);
-        }
-
-        // Initiate ArrayList of plaintext & ciphertext result
-        ArrayList<byte[]> plaintext = new ArrayList<>();
-        ArrayList<byte[]> ciphertext = new ArrayList<>();
-
-        // Read all plaintext input
-        byte[] buffByte = new byte[BLOCK_SIZE];
-        int readBlock = fi.read(buffByte);
-        while (readBlock > 0) {
-            plaintext.add(buffByte);
-            buffByte = new byte[BLOCK_SIZE];
-            readBlock = fi.read(buffByte);
-        }
-
-        // Calculate the residue, a number of bytes which represents the size of last block
-        // from the file. For example, the residue from 36 bytes file is 4 because 36 mod 16 = 4,
-        // and 36 bytes can be formed from 16+16+4 = 36 bytes.
-        int fileBlockResidue = (int) (fi.getChannel().size() % 16);
-
-        if (trace) {
-            System.out.print("Plaintext (" + fi.getChannel().size() + " byte(s)): ");
-
-            for (int i = 0; i < plaintext.size(); i++) {
-                if (i == plaintext.size()-1) {
-                    if (fileBlockResidue != 0) {
-                        byte[] tempPlaintext = Arrays.copyOfRange(plaintext.get(i), 0, fileBlockResidue);
-                        System.out.print(Util.byteToHex(tempPlaintext));
-                    }
-                } else {
-                    System.out.print(Util.byteToHex(plaintext.get(i)));
-                }
-            }
-
             System.out.println("\n============ ENCRYPTION START ============");
         }
 
         for (int i = 0; i < plaintext.size(); i++) {
-            byte[] encryptKeyNonce = myAES.encrypt(nonce); // encrypt the nonce with the key
+            byte[] encryptKeyNonce = AES.encrypt(nonce); // encrypt the nonce with the key
             nonce[15] = (byte) (nonce[15]+1); // increase the counter
             byte[] ithCiphertext;
 
@@ -119,8 +96,8 @@ public class CTR {
 
         if (trace) {
             System.out.print("Ciphertext lengkap: ");
-            for (int i = 0; i < ciphertext.size(); i++) {
-                System.out.print(Util.byteToHex(ciphertext.get(i)));
+            for (byte[] aCiphertext : ciphertext) {
+                System.out.print(Util.byteToHex(aCiphertext));
             }
             System.out.println();
         }
@@ -135,17 +112,30 @@ public class CTR {
      * @param pathFile file input path
      * @param pathKey key file path
      * @param pathOutput file output path
-     * @param trace boolean variable for tracing
-     * @throws NoSuchPaddingException
-     * @throws NoSuchAlgorithmException
-     * @throws IllegalBlockSizeException
-     * @throws BadPaddingException
-     * @throws InvalidKeyException
-     * @throws IOException
      */
-    public void doDecryption(String pathFile, String pathKey, String pathOutput, boolean trace) throws NoSuchPaddingException, NoSuchAlgorithmException, IllegalBlockSizeException, BadPaddingException, InvalidKeyException, IOException {
+    void doDecryption(String pathFile, String pathKey, String pathOutput) throws Exception {
         // Initiate I/O stream
         initIOStream(pathFile, pathKey, pathOutput);
+
+        // Get the file size in bytes
+        fileSize = fi.getChannel().size() % BLOCK_SIZE;
+
+        // Calculate the residue, a number of bytes which represents the size of last block
+        // from the file. For example, the residue from 36 bytes file is 4 because 36 mod 16 = 4,
+        // and 36 bytes can be formed from 16+16+4 = 36 bytes.
+        fileBlockResidue = (int) (fileSize % 16);
+
+        // Initiate ArrayList of ciphertext & plaintext result
+        ArrayList<byte[]> ciphertext = new ArrayList<>();
+        ArrayList<byte[]> plaintext = new ArrayList<>();
+
+        // Read all ciphertext input
+        readFileBytes(ciphertext);
+
+        if (trace) {
+            System.out.print("Ciphertext (" + fi.getChannel().size() + " byte(s)): ");
+            printFileBytes(ciphertext);
+        }
 
         // Read the key from the file, convert it to byte[] & set AES key
         String key = bfKey.readLine();
@@ -156,45 +146,11 @@ public class CTR {
         if (trace) {
             System.out.println("Key: " + key);
             System.out.println("Nonce: " + nonceString);
-        }
-
-        // Initiate ArrayList of ciphertext & plaintext result
-        ArrayList<byte[]> ciphertext = new ArrayList<>();
-        ArrayList<byte[]> plaintext = new ArrayList<>();
-
-        // Read all ciphertext input
-        byte[] buffByte = new byte[BLOCK_SIZE];
-        int readBlock = fi.read(buffByte);
-        while (readBlock > 0) {
-            ciphertext.add(buffByte);
-            buffByte = new byte[BLOCK_SIZE];
-            readBlock = fi.read(buffByte);
-        }
-
-        // Calculate the residue, a number of bytes which represents the size of last block
-        // from the file. For example, the residue from 36 bytes file is 4 because 36 mod 16 = 4,
-        // and 36 bytes can be formed from 16+16+4 = 36 bytes.
-        int fileBlockResidue = (int) (fi.getChannel().size() % 16);
-
-        if (trace) {
-            System.out.print("Ciphertext (" + fi.getChannel().size() + " byte(s)): ");
-
-            for (int i = 0; i < ciphertext.size(); i++) {
-                if (i == ciphertext.size()-1) {
-                    if (fileBlockResidue != 0) {
-                        byte[] tempCiphertext = Arrays.copyOfRange(ciphertext.get(i), 0, fileBlockResidue);
-                        System.out.print(Util.byteToHex(tempCiphertext));
-                    }
-                } else {
-                    System.out.print(Util.byteToHex(ciphertext.get(i)));
-                }
-            }
-
             System.out.println("\n============ DECRYPTION START ============");
         }
 
         for (int i = 0; i < ciphertext.size(); i++) {
-            byte[] encryptKeyNonce = myAES.encrypt(nonce); // encrypt the nonce with the key
+            byte[] encryptKeyNonce = AES.encrypt(nonce); // encrypt the nonce with the key
             nonce[15] = (byte) (nonce[15]+1); // increase the counter
             byte[] ithPlaintext;
 
@@ -226,8 +182,8 @@ public class CTR {
 
         if (trace) {
             System.out.print("Plaintext lengkap: ");
-            for (int i = 0; i < plaintext.size(); i++) {
-                System.out.print(Util.byteToHex(plaintext.get(i)));
+            for (byte[] aPlaintext : plaintext) {
+                System.out.print(Util.byteToHex(aPlaintext));
             }
         }
 
@@ -241,32 +197,61 @@ public class CTR {
      * @param pathFile file input path
      * @param pathKey key file path
      * @param pathOutput file output path
-     * @throws FileNotFoundException
      */
-    static void initIOStream(String pathFile, String pathKey, String pathOutput) throws FileNotFoundException {
+    private static void initIOStream(String pathFile, String pathKey, String pathOutput) throws FileNotFoundException {
         fi = new FileInputStream(pathFile);
         fo = new FileOutputStream(pathOutput);
         bfKey = new BufferedReader(new FileReader(pathKey));
     }
 
     /**
+     * Method to read file bytes from input stream and store it in an array list.
+     *
+     * @param file array list where the file bytes stored
+     */
+    private static void readFileBytes(ArrayList<byte[]> file) throws IOException {
+        byte[] buffByte = new byte[BLOCK_SIZE];
+        int readBlock = fi.read(buffByte);
+        while (readBlock > 0) {
+            file.add(buffByte);
+            buffByte = new byte[BLOCK_SIZE];
+            readBlock = fi.read(buffByte);
+        }
+    }
+
+    /**
+     * Method to print the file bytes in hex.
+     *
+     * @param file file in form of array list to be printed
+     */
+    private static void printFileBytes(ArrayList<byte[]> file) {
+        for (int i = 0; i < file.size(); i++) {
+            if (i == file.size()-1) {
+                if (fileBlockResidue != 0) {
+                    byte[] tempCiphertext = Arrays.copyOfRange(file.get(i), 0, fileBlockResidue);
+                    System.out.print(Util.byteToHex(tempCiphertext));
+                }
+            } else {
+                System.out.print(Util.byteToHex(file.get(i)));
+            }
+        }
+    }
+
+    /**
      * Method to write the data in bytes to file.
      *
      * @param bytes array list of bytes array to be written to file
-     * @throws IOException
      */
-    static void writeToFile(ArrayList<byte[]> bytes) throws IOException {
-        for (int i = 0; i < bytes.size(); i++) {
-            fo.write(bytes.get(i));
+    private static void writeToFile(ArrayList<byte[]> bytes) throws IOException {
+        for (byte[] aByte : bytes) {
+            fo.write(aByte);
         }
     }
 
     /**
      * Method to close the file input/output stream.
-     *
-     * @throws IOException
      */
-    static void closeIOStream() throws IOException {
+    private static void closeIOStream() throws IOException {
         fi.close();
         fo.close();
         bfKey.close();
