@@ -11,7 +11,7 @@ import java.util.Random;
 class Util {
 
     /** array mapping hex value (0-15) to corresponding hex digit (0-9a-f). */
-    public static final char[] HEX_DIGITS = {
+    private static final char[] HEX_DIGITS = {
             '0','1','2','3','4','5','6','7','8','9','a','b','c','d','e','f'
     };
 
@@ -23,7 +23,7 @@ class Util {
      * @param ba array of bytes to be converted into hex
      * @return hex representation of byte array
      */
-    public static String byteToHex (byte[] ba) {
+    static String byteToHex(byte[] ba) {
         int length = ba.length;
         char[] buf = new char[length * 2];
         for (int i = 0, j = 0, k; i < length; ) {
@@ -40,7 +40,7 @@ class Util {
      * @param hex string of hex characters
      * @return byte array of binary data corresponding to hex string input
      */
-    public static byte[] hexToByte(String hex) {
+    static byte[] hexToByte(String hex) {
         int len = hex.length();
         byte[] buf = new byte[((len + 1) / 2)];
 
@@ -61,7 +61,7 @@ class Util {
      * @param ch hex digit character (must be 0-9A-Fa-f)
      * @return   numeric equivalent of hex digit (0-15)
      */
-    public static int hexDigit(char ch) {
+    private static int hexDigit(char ch) {
         if (ch >= '0' && ch <= '9')
             return ch - '0';
         if (ch >= 'A' && ch <= 'F')
@@ -79,7 +79,7 @@ class Util {
      * @param input2 input variable 2
      * @return XOR operation result
      */
-    public static byte[] xor(byte[] input1, byte[] input2) {
+    static byte[] xor(byte[] input1, byte[] input2) {
         byte[] tmp = new byte[input1.length];
         for (int i = 0; i < input1.length; i++) {
             tmp[i] = (byte) (input1[i] ^ input2[i]);
@@ -93,7 +93,7 @@ class Util {
      * @param numchars digits of string to be generated
      * @return generated random hex string
      */
-    public static String generateRandomHexString(int numchars) {
+    static String generateRandomHexString(int numchars) {
         Random r = new Random();
         StringBuilder sb = new StringBuilder();
         while(sb.length() < numchars){

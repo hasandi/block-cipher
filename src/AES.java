@@ -4,26 +4,24 @@
  *
  * @author Lawrie Brown, Hasandi Patriawan, Kevin Ega Pratama, Apr 2017.
  */
-public class AES {
+class AES {
 
     /** AES constants and variables. */
-    public static final int
+    private static final int
             BLOCK_SIZE = 16;	// AES uses 128-bit (16 byte) key
 
     // Define key attributes for current AES instance
     /** number of rounds used given AES key set on this instance. */
-    static int numRounds;
+    private static int numRounds;
     /** encryption round keys derived from AES key set on this instance. */
-    static byte[][] Ke;
-    /** decryption round keys derived from AES key set on this instance. */
-    byte[][] Kd;
+    private static byte[][] Ke;
 
     /** AES encryption S-box.
      *  <p>See FIPS-197 section 5.1.1 or Stallings section 5.2.
      *  Note that hex values have been converted to decimal for easy table
      *  specification in Java.
      */
-    static final byte[] S = {
+    private static final byte[] S = {
             99, 124, 119, 123, -14, 107, 111, -59, 48, 1, 103, 43, -2, -41, -85, 118,
             -54, -126, -55, 125, -6, 89, 71, -16, -83, -44, -94, -81, -100, -92, 114, -64,
             -73, -3, -109, 38, 54, 63, -9, -52, 52, -91, -27, -15, 113, -40, 49, 21,
@@ -46,7 +44,7 @@ public class AES {
      *  Note that hex values have been converted to decimal for easy table
      *  specification in Java, and that indexes start at 1, hence initial 0 entry.
      */
-    static final byte[] rcon = {
+    private static final byte[] rcon = {
             0,
             1, 2, 4, 8, 16, 32,
             64, -128, 27, 54, 108, -40,
@@ -55,21 +53,21 @@ public class AES {
             -77, 125, -6, -17, -59, -111 };
 
     /** Internal AES constants and variables. */
-    public static final int
+    private static final int
             COL_SIZE = 4,				// depth of each column in AES state variable
             NUM_COLS = BLOCK_SIZE / COL_SIZE,	// number of columns in AES state variable
             ROOT = 0x11B;				// generator polynomial used in GF(2^8)
 
     /** define ShiftRows transformation as shift amount for each row in state. */
-    static final int[] row_shift = {0, 1, 2, 3};
+    private static final int[] row_shift = {0, 1, 2, 3};
 
     /* alog table for field GF(2^m) used to speed up multiplications. */
-    static final int[] alog = new int[256];
+    private static final int[] alog = new int[256];
     /* log table for field GF(2^m) used to speed up multiplications. */
-    static final int[] log =  new int[256];
+    private static final int[] log =  new int[256];
 
-    /** static code to initialise the log and alog tables.
-     *  Used to implement multiplication in GF(2^8).
+    /* static code to initialise the log and alog tables.
+       Used to implement multiplication in GF(2^8).
      */
     static {
         int i, j;
@@ -84,7 +82,7 @@ public class AES {
     }
 
     /** Construct AES object. */
-    public AES() {
+    AES() {
     }
 
     /** return number of rounds for a given AES key size.
@@ -92,7 +90,7 @@ public class AES {
      * @param keySize	size of the user key material in bytes.
      * @return		number of rounds for a given AES key size.
      */
-    public static int getRounds (int keySize) {
+    private static int getRounds(int keySize) {
         switch (keySize) {
             case 16:	// 16 byte = 128 bit key
                 return 10;
@@ -110,7 +108,7 @@ public class AES {
      *  @param b 2nd value to multiply
      *  @return product of a * b module its generator polynomial
      */
-    static final int mul (int a, int b) {
+    private static int mul(int a, int b) {
         return (a != 0 && b != 0) ?
                 alog[(log[a & 0xFF] + log[b & 0xFF]) % 255] :
                 0;
@@ -125,12 +123,12 @@ public class AES {
      * @param plain the 128-bit plaintext value to encrypt.
      * @return the encrypted 128-bit ciphertext value.
      */
-    public static byte[] encrypt(byte[] plain) {
+    static byte[] encrypt(byte[] plain) {
         // define working variables
         byte [] a = new byte[BLOCK_SIZE];	// AES state variable
         byte [] ta = new byte[BLOCK_SIZE];	// AES temp state variable
         byte [] Ker;				// encrypt keys for current round
-        int	i, j, k, row, col;
+        int	i, k, row, col;
 
         // check for bad arguments
         if (plain == null)
@@ -197,7 +195,7 @@ public class AES {
      *
      * @param key        The 128/192/256-bit AES key to use.
      */
-    public void setKey(byte[] key) {
+    void setKey(byte[] key) {
         // assorted internal constants
         final int BC = BLOCK_SIZE / 4;
         final int Klen = key.length;
@@ -224,7 +222,8 @@ public class AES {
 
         // allocate arrays to hold en/decrypt session keys (by byte rather than word)
         Ke = new byte[numRounds + 1][BLOCK_SIZE]; // encryption round keys
-        Kd = new byte[numRounds + 1][BLOCK_SIZE]; // decryption round keys
+        /* decryption round keys derived from AES key set on this instance. */
+        byte[][] kd = new byte[numRounds + 1][BLOCK_SIZE];
 
         // copy key into start of session array (by word, each byte in own array)
         for (i=0, j=0; i < Nk; i++) {
@@ -239,9 +238,9 @@ public class AES {
                 // temp = SubWord(RotWord(temp)) ^ Rcon[i/Nk]
                 old0 = t0;			// save old 1st byte value for t3 calc
                 t0 = (byte)(S[t1 & 0xFF] ^ rcon[i/Nk]);	// nb. constant XOR 1st byte only
-                t1 = (byte)(S[t2 & 0xFF]);
-                t2 = (byte)(S[t3 & 0xFF]);	// nb. RotWord done by reordering bytes used
-                t3 = (byte)(S[old0 & 0xFF]);
+                t1 = S[t2 & 0xFF];
+                t2 = S[t3 & 0xFF];	// nb. RotWord done by reordering bytes used
+                t3 = S[old0 & 0xFF];
             }
             else if ((Nk > 6) && (i % Nk == 4)) {
                 // temp = SubWord(temp)
@@ -261,10 +260,10 @@ public class AES {
                 Ke[r][4*j+1] = w1[i];
                 Ke[r][4*j+2] = w2[i];
                 Ke[r][4*j+3] = w3[i];
-                Kd[numRounds - r][4*j] = w0[i];
-                Kd[numRounds - r][4*j+1] = w1[i];
-                Kd[numRounds - r][4*j+2] = w2[i];
-                Kd[numRounds - r][4*j+3] = w3[i];
+                kd[numRounds - r][4*j] = w0[i];
+                kd[numRounds - r][4*j+1] = w1[i];
+                kd[numRounds - r][4*j+2] = w2[i];
+                kd[numRounds - r][4*j+3] = w3[i];
                 i++;
             }
         }
