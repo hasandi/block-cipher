@@ -15,13 +15,14 @@ import java.util.Arrays;
 public class CTR {
 
     private static final int BLOCK_SIZE = 16;
-    private static byte[] nonce;
+    private static byte[] nonceByte;
     private static FileInputStream fi;
     private static FileOutputStream fo;
     private static BufferedReader bfKey;
     private static AES myAES = new AES();
+    private String nonce = Util.generateRandomHexString(32);
 
-    public static void doEncryption(String pathFile, String pathKey, String pathOutput) throws InvalidKeyException, NoSuchAlgorithmException, NoSuchPaddingException, IllegalBlockSizeException, BadPaddingException, IOException {
+    public void doEncryption(String pathFile, String pathKey, String pathOutput) throws InvalidKeyException, NoSuchAlgorithmException, NoSuchPaddingException, IllegalBlockSizeException, BadPaddingException, IOException {
         fi = new FileInputStream(pathFile);
         fo = new FileOutputStream(pathOutput);
         bfKey = new BufferedReader(new FileReader(pathKey));
@@ -29,12 +30,13 @@ public class CTR {
         String key = bfKey.readLine();
         System.out.println("Key: " + key);
         byte[] keyByte = Util.hexToByte(key);
-        String nonce = Util.generateRandomHexString(32);
-        System.out.println("Nonce: " + nonce);
+
+        //nonce
         byte[] nonceByte = Util.hexToByte(nonce);
         myAES.setKey(keyByte);
         ArrayList<byte[]> plaintext = new ArrayList<>();
         ArrayList<byte[]> ciphertext = new ArrayList<>();
+
 
         // Read all plaintext input
         byte[] buffByte = new byte[BLOCK_SIZE];
@@ -102,5 +104,5 @@ public class CTR {
 
     public void doDecryption(String pathFile, String pathKey, String pathOutput) {
 
+           }
     }
-}
