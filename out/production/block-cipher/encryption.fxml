@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.text.*?>
+<?import javafx.geometry.*?>
+<?import java.lang.*?>
+<?import java.util.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+
+<BorderPane fx:id="encryptionPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="300.0" prefWidth="400.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controller">
+   <top>
+      <MenuBar fx:id="menuBar" BorderPane.alignment="CENTER">
+        <menus>
+          <Menu mnemonicParsing="false" text="Navigate">
+            <items>
+              <MenuItem mnemonicParsing="false" onAction="#loadMenu" text="Menu" />
+                  <MenuItem mnemonicParsing="false" onAction="#loadEncryption" text="Encryption" />
+                  <MenuItem mnemonicParsing="false" onAction="#loadDecryption" text="Decryption" />
+            </items>
+          </Menu>
+        </menus>
+      </MenuBar>
+   </top>
+   <center>
+      <VBox alignment="TOP_CENTER" prefHeight="200.0" prefWidth="100.0" spacing="15.0" BorderPane.alignment="CENTER">
+         <children>
+            <HBox prefHeight="8.0">
+               <children>
+                  <Label text="ENCRYPTION">
+                     <font>
+                        <Font size="18.0" />
+                     </font>
+                  </Label>
+               </children>
+               <VBox.margin>
+                  <Insets top="5.0" />
+               </VBox.margin>
+            </HBox>
+            <HBox alignment="CENTER_LEFT" prefHeight="22.0" spacing="10.0">
+               <children>
+                  <Label text="Choose plaintext file:" />
+                  <Region prefHeight="25.0" prefWidth="4.0" />
+                  <Button alignment="TOP_RIGHT" mnemonicParsing="false" onAction="#setPathPlaintext" text="Open.." />
+                  <Label fx:id="plaintextStatus" text="no file selected" />
+               </children>
+            </HBox>
+            <HBox alignment="CENTER_LEFT" layoutX="10.0" layoutY="209.0" prefHeight="22.0" spacing="10.0">
+               <children>
+                  <Label text="Choose key file:" />
+                  <Region prefHeight="25.0" prefWidth="33.0" />
+                  <Button mnemonicParsing="false" onAction="#setPathKey" text="Open.." />
+                  <Label fx:id="keyStatus" text="no file selected" />
+               </children>
+            </HBox>
+            <HBox alignment="CENTER_LEFT" layoutX="10.0" layoutY="235.0" prefHeight="22.0" spacing="10.0">
+               <children>
+                  <Label prefHeight="17.0" prefWidth="106.0" text="Create output file:" />
+                  <Region prefHeight="25.0" prefWidth="9.0" />
+                  <Button mnemonicParsing="false" onAction="#setPathOutput" text="Create" />
+                  <Label fx:id="outputStatus" text="no file created" />
+               </children>
+            </HBox>
+            <HBox prefHeight="100.0">
+               <children>
+                  <Region prefHeight="69.0" prefWidth="133.0" />
+                  <Button mnemonicParsing="false" onAction="#encrypt" prefHeight="25.0" prefWidth="68.0" text="Encrypt" />
+               </children>
+            </HBox>
+         </children>
+         <BorderPane.margin>
+            <Insets left="30.0" top="15.0" />
+         </BorderPane.margin>
+      </VBox>
+   </center>
+   <bottom>
+      <Label fx:id="encryptionStatus" minHeight="-Infinity" text="Status: No ongoing operation." BorderPane.alignment="CENTER">
+         <BorderPane.margin>
+            <Insets bottom="5.0" left="2.0" right="2.0" top="2.0" />
+         </BorderPane.margin>
+      </Label>
+   </bottom>
+</BorderPane>

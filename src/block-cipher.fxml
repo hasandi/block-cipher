@@ -8,79 +8,62 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
-<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controller">
+<BorderPane fx:id="menuPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="300.0" prefWidth="400.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controller">
     <top>
-        <VBox BorderPane.alignment="CENTER">
+        <MenuBar fx:id="menuBar" BorderPane.alignment="CENTER">
+            <menus>
+                <Menu mnemonicParsing="false" text="Navigate">
+                    <items>
+                        <MenuItem mnemonicParsing="false" onAction="#loadMenu" text="Menu" />
+                        <MenuItem mnemonicParsing="false" onAction="#loadEncryption" text="Encryption" />
+                        <MenuItem mnemonicParsing="false" onAction="#loadDecryption" text="Decryption" />
+                    </items>
+                </Menu>
+            </menus>
+        </MenuBar>
+    </top>
+    <center>
+        <VBox fx:id="vboxMenu" alignment="TOP_CENTER" prefHeight="200.0" prefWidth="100.0" spacing="15.0" BorderPane.alignment="CENTER">
             <children>
-                <MenuBar>
-                    <menus>
-                        <Menu mnemonicParsing="false" text="File">
-                            <items>
-                                <MenuItem mnemonicParsing="false" text="Close" />
-                            </items>
-                        </Menu>
-                        <Menu mnemonicParsing="false" text="Edit">
-                            <items>
-                                <MenuItem mnemonicParsing="false" text="Delete" />
-                            </items>
-                        </Menu>
-                        <Menu mnemonicParsing="false" text="Help">
-                            <items>
-                                <MenuItem mnemonicParsing="false" text="About" />
-                            </items>
-                        </Menu>
-                    </menus>
-                </MenuBar>
-                <HBox spacing="10.0">
+                <HBox prefHeight="8.0">
                     <children>
-                        <Button mnemonicParsing="false" onAction="#encrypt" text="Encrypt" />
-                        <Button layoutX="159.0" layoutY="10.0" mnemonicParsing="false" onAction="#decrypt" text="Decrypt" />
+                        <Label text="AES-CTR Encryption &amp; Decryption">
+                            <font>
+                                <Font size="18.0" />
+                            </font>
+                        </Label>
                     </children>
                     <VBox.margin>
-                        <Insets bottom="8.0" left="8.0" right="8.0" top="8.0" />
+                        <Insets top="5.0" />
                     </VBox.margin>
                 </HBox>
-            </children>
-        </VBox>
-    </top>
-    <bottom>
-        <HBox BorderPane.alignment="CENTER">
-            <children>
-                <Label text="Footer" />
+                <HBox alignment="CENTER_LEFT" prefHeight="22.0" spacing="10.0">
+               <children>
+                  <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Author: Hasandi Patriawan &amp; Kevin Ega Pratama" />
+               </children>
+                </HBox>
+                <HBox alignment="CENTER_LEFT" layoutX="10.0" layoutY="209.0" prefHeight="22.0" spacing="10.0">
+               <children>
+                  <Button mnemonicParsing="false" onAction="#loadEncryption" text="Do Encryption" />
+               </children>
+                </HBox>
+                <HBox alignment="CENTER_LEFT" layoutX="10.0" layoutY="235.0" prefHeight="22.0" spacing="10.0">
+               <children>
+                  <Button mnemonicParsing="false" onAction="#loadDecryption" text="Do Decryption" />
+               </children>
+                </HBox>
+                <HBox prefHeight="100.0" />
             </children>
             <BorderPane.margin>
-                <Insets />
+                <Insets left="30.0" top="15.0" />
             </BorderPane.margin>
-            <padding>
-                <Insets bottom="2.0" left="2.0" right="2.0" top="2.0" />
-            </padding>
-        </HBox>
+        </VBox>
+    </center>
+    <bottom>
+        <Label fx:id="encryptionStatus" minHeight="-Infinity" text="Created with JavaFX - KevinSandi 2017" BorderPane.alignment="CENTER">
+            <BorderPane.margin>
+                <Insets bottom="5.0" left="2.0" right="2.0" top="2.0" />
+            </BorderPane.margin>
+        </Label>
     </bottom>
-   <center>
-      <Text fx:id="hello" strokeType="OUTSIDE" strokeWidth="0.0" text="Text" BorderPane.alignment="CENTER" />
-   </center>
-   <left>
-      <VBox prefHeight="200.0" prefWidth="100.0" spacing="10.0" BorderPane.alignment="CENTER">
-         <children>
-            <Button fx:id="openplain" mnemonicParsing="false" onAction="#setPathPlaintext" text="Open Plaintext" />
-            <Button mnemonicParsing="false" onAction="#setPathKey" text="Open Key" />
-            <Button mnemonicParsing="false" onAction="#setPathOutput" text="Set Outputfile" />
-         </children>
-         <BorderPane.margin>
-            <Insets bottom="8.0" left="8.0" right="8.0" top="8.0" />
-         </BorderPane.margin>
-      </VBox>
-   </left>
-   <right>
-      <VBox prefHeight="200.0" prefWidth="100.0" spacing="10.0" BorderPane.alignment="CENTER">
-         <children>
-            <Button fx:id="openplain1" mnemonicParsing="false" onAction="#setPathPlaintextDec" text="Open Plaintext" />
-            <Button mnemonicParsing="false" onAction="#setPathKeyDec" text="Open Key" />
-            <Button mnemonicParsing="false" onAction="#setPathOutputDec" text="Set Outputfile" />
-         </children>
-         <BorderPane.margin>
-            <Insets bottom="8.0" left="8.0" right="8.0" top="8.0" />
-         </BorderPane.margin>
-      </VBox>
-   </right>
 </BorderPane>
