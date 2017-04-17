@@ -157,7 +157,7 @@ public class Controller {
         FileChooser fileChooser = new FileChooser();
         File file = fileChooser.showOpenDialog(new Stage());
         try {
-            file.getAbsolutePath();
+            pathCiphertext = file.getAbsolutePath();
             ciphertextStatus.setText(file.getName());
         }catch(Exception e){
         }
