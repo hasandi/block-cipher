@@ -18,7 +18,7 @@ class CTR {
     private static FileOutputStream fo;
     private static BufferedReader bfKey;
     private static AES myAES = new AES();
-    private static boolean trace = true;
+    private static boolean trace = false;
 
     /**
      * Method to do CTR mode block encryption.
