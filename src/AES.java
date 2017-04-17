@@ -133,8 +133,9 @@ class AES {
         // check for bad arguments
         if (plain == null)
             throw new IllegalArgumentException("Empty plaintext");
-        if (plain.length != BLOCK_SIZE)
+        if (!(plain.length == 16 | plain.length == 24 | plain.length == 32)) {
             throw new IllegalArgumentException("Incorrect plaintext length");
+        }
 
         // copy plaintext bytes into state and do initial AddRoundKey(state)
         Ker = Ke[0];

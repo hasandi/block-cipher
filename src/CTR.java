@@ -13,12 +13,12 @@ class CTR {
     private static long fileSize;
     private static int fileBlockResidue;
 //    private static String nonceString = Util.generateRandomHexString(32);
-    private static String nonceString = "12345678123456781234567812345678";
+    private static String nonceString;
     private static FileInputStream fi;
     private static FileOutputStream fo;
     private static BufferedReader bfKey;
     private static AES myAES = new AES();
-    private static boolean trace = false;
+    private static boolean trace = true;
 
     /**
      * Method to do CTR mode block encryption.
@@ -56,6 +56,7 @@ class CTR {
         String key = bfKey.readLine();
         byte[] keyByte = Util.hexToByte(key);
         myAES.setKey(keyByte);
+        setNonceString(keyByte);
         byte[] nonce = Util.hexToByte(nonceString);
 
         if (trace) {
@@ -143,6 +144,7 @@ class CTR {
         String key = bfKey.readLine();
         byte[] keyByte = Util.hexToByte(key);
         myAES.setKey(keyByte);
+        setNonceString(keyByte);
         byte[] nonce = Util.hexToByte(nonceString);
 
         if (trace) {
@@ -191,6 +193,16 @@ class CTR {
 
         writeToFile(plaintext);
         closeIOStream();
+    }
+
+    static void setNonceString(byte[] key) {
+        if (key.length == 16) {
+            nonceString = "12345678123456781234567812345678";
+        } else if (key.length == 24) {
+            nonceString = "123456781234567812345678123456781234567812345678";
+        } else {
+            nonceString = "1234567812345678123456781234567812345678123456781234567812345678";
+        }
     }
 
     /**
