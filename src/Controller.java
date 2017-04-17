@@ -7,6 +7,7 @@ import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.control.Label;
 import javafx.scene.layout.BorderPane;
+import javafx.scene.paint.Color;
 import javafx.scene.text.Text;
 import javafx.stage.FileChooser;
 import javafx.stage.Stage;
@@ -14,11 +15,11 @@ import javafx.stage.Stage;
 import javax.crypto.BadPaddingException;
 import javax.crypto.IllegalBlockSizeException;
 import javax.crypto.NoSuchPaddingException;
-import java.awt.*;
 import java.io.File;
 import java.io.IOException;
 import java.security.InvalidKeyException;
 import java.security.NoSuchAlgorithmException;
+
 
 /**
  * Created by kegap on 4/13/2017.
@@ -36,20 +37,31 @@ public class Controller {
     @FXML private Label decryptionStatus;
     @FXML private Label encryptionStatus;
 
-    private String pathPlaintext;
-    private String pathKey;
-    private String pathOutput;
+    private String pathPlaintext="";
+    private String pathKey="";
+    private String pathOutput="";
 
-    private String pathCiphertext;
-    private String pathOutputDec;
+    private String pathCiphertext="";
+    private String pathOutputDec="";
+
+    private String error;
 
 
     @FXML public void decrypt() throws Exception {
         CTR ctr = new CTR();
         try {
-            ctr.doDecryption(pathCiphertext, pathKey, pathOutputDec);
-            decryptionStatus.setText("Decrypted successfully, Plaintext has been written to file.");
-            reset("decrypt");
+            if((pathCiphertext.equals("")) | (pathKey.equals(""))) {
+                decryptionStatus.setText("Ciphertext file or key file is not specified");
+                decryptionStatus.setTextFill(Color.web("red"));
+            }else if(pathOutputDec == ""){
+                decryptionStatus.setText("Output file is not specified");
+                decryptionStatus.setTextFill(Color.web("red"));
+            }else {
+                ctr.doDecryption(pathCiphertext, pathKey, pathOutputDec);
+                decryptionStatus.setText("Decrypted successfully, Plaintext has been written to file.");
+                decryptionStatus.setTextFill(Color.web("black"));
+                reset("decrypt");
+            }
         }catch(Exception e){
             e.printStackTrace();
         }
@@ -58,22 +70,33 @@ public class Controller {
         //hello.setText("Hello World Madafaka");
         CTR ctr = new CTR();
         try {
-            ctr.doEncryption(pathPlaintext,pathKey,pathOutput);
-            encryptionStatus.setText("Status: Encrypted successfully, Ciphertext has been written to file.");
-            reset("encrypt");
+            if((pathPlaintext == "") | (pathKey == "")) {
+                encryptionStatus.setText("Plaintext file or key file is not specified");
+                encryptionStatus.setTextFill(Color.web("red"));
+            }else if(pathOutput == ""){
+                encryptionStatus.setText("Output file is not specified");
+                encryptionStatus.setTextFill(Color.web("red"));
+            }else {
+                ctr.doEncryption(pathPlaintext, pathKey, pathOutput);
+                encryptionStatus.setText("Status: Encrypted successfully, Ciphertext has been written to file.");
+                encryptionStatus.setTextFill(Color.web("black"));
+                reset("encrypt");
+            }
         } catch (InvalidKeyException e) {
             e.printStackTrace();
-
         } catch (NoSuchAlgorithmException e) {
             e.printStackTrace();
         } catch (NoSuchPaddingException e) {
             e.printStackTrace();
-        } catch (IllegalBlockSizeException e) {
+        } catch(IllegalArgumentException e){
+            encryptionStatus.setText("Key length must be 16 or 24 or 32 bytes");
+        } catch(IllegalBlockSizeException e) {
             e.printStackTrace();
         } catch (BadPaddingException e) {
             e.printStackTrace();
         } catch (IOException e) {
             e.printStackTrace();
+            encryptionStatus.setText("IOException occured");
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -103,45 +126,50 @@ public class Controller {
     public void setPathPlaintext(){
         FileChooser fileChooser = new FileChooser();
         File file = fileChooser.showOpenDialog(new Stage());
-        if(!file.equals(null)){
+        try {
             pathPlaintext = file.getAbsolutePath();
             plaintextStatus.setText(file.getName());
+        }catch(Exception e){
         }
     }
 
     public void setPathKey(){
         FileChooser fileChooser = new FileChooser();
         File file = fileChooser.showOpenDialog(new Stage());
-        if(!file.equals(null)) {
+        try {
             pathKey = file.getAbsolutePath();
             keyStatus.setText(file.getName());
+        }catch(Exception e){
         }
     }
 
     public void setPathOutput(){
         FileChooser fileChooser = new FileChooser();
         File file = fileChooser.showSaveDialog(new Stage());
-        if(!file.equals(null)) {
+        try {
             pathOutput = file.getAbsolutePath();
             outputStatus.setText(file.getName());
+        }catch(Exception e){
         }
     }
 
     public void setCiphertextPath(){
         FileChooser fileChooser = new FileChooser();
         File file = fileChooser.showOpenDialog(new Stage());
-        if(!file.equals(null)) {
+        try {
             file.getAbsolutePath();
             ciphertextStatus.setText(file.getName());
+        }catch(Exception e){
         }
     }
 
     public void setPathOutputDec(){
         FileChooser fileChooser = new FileChooser();
         File file = fileChooser.showSaveDialog(new Stage());
-        if(!file.equals(null)) {
+        try{
             pathOutputDec = file.getAbsolutePath();
             outputDecStatus.setText(file.getName());
+        }catch (Exception e){
         }
     }
 
