@@ -63,6 +63,7 @@ public class Controller {
             reset("encrypt");
         } catch (InvalidKeyException e) {
             e.printStackTrace();
+
         } catch (NoSuchAlgorithmException e) {
             e.printStackTrace();
         } catch (NoSuchPaddingException e) {
@@ -102,8 +103,8 @@ public class Controller {
     public void setPathPlaintext(){
         FileChooser fileChooser = new FileChooser();
         File file = fileChooser.showOpenDialog(new Stage());
-        pathPlaintext = file.getAbsolutePath();
-        if(pathPlaintext != ""){
+        if(!file.equals(null)){
+            pathPlaintext = file.getAbsolutePath();
             plaintextStatus.setText(file.getName());
         }
     }
@@ -111,8 +112,8 @@ public class Controller {
     public void setPathKey(){
         FileChooser fileChooser = new FileChooser();
         File file = fileChooser.showOpenDialog(new Stage());
-        pathKey = file.getAbsolutePath();
-        if(pathKey != ""){
+        if(!file.equals(null)) {
+            pathKey = file.getAbsolutePath();
             keyStatus.setText(file.getName());
         }
     }
@@ -120,22 +121,28 @@ public class Controller {
     public void setPathOutput(){
         FileChooser fileChooser = new FileChooser();
         File file = fileChooser.showSaveDialog(new Stage());
-        pathOutput = file.getAbsolutePath();
-        outputStatus.setText(file.getName());
+        if(!file.equals(null)) {
+            pathOutput = file.getAbsolutePath();
+            outputStatus.setText(file.getName());
+        }
     }
 
     public void setCiphertextPath(){
         FileChooser fileChooser = new FileChooser();
         File file = fileChooser.showOpenDialog(new Stage());
-        pathCiphertext = file.getAbsolutePath();
-        ciphertextStatus.setText(file.getName());
+        if(!file.equals(null)) {
+            file.getAbsolutePath();
+            ciphertextStatus.setText(file.getName());
+        }
     }
 
     public void setPathOutputDec(){
         FileChooser fileChooser = new FileChooser();
         File file = fileChooser.showSaveDialog(new Stage());
-        pathOutputDec = file.getAbsolutePath();
-        outputDecStatus.setText(file.getName());
+        if(!file.equals(null)) {
+            pathOutputDec = file.getAbsolutePath();
+            outputDecStatus.setText(file.getName());
+        }
     }
 
     @FXML
