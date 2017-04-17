@@ -1,0 +1,23 @@
+<component name="ArtifactManager">
+  <artifact type="javafx" name="AES-CTR Encryption and Decryption">
+    <output-path>$PROJECT_DIR$/out/artifacts/AES_CTR_Encryption_and_Decryption</output-path>
+    <properties id="javafx-properties">
+      <options>
+        <option name="appClass" value="Main" />
+        <option name="description" value="AES-CTR Encryption and Decryption by Kevin Ega Pratama and Hasandi Patriawan." />
+        <option name="height" value="300" />
+        <option name="htmlPlaceholderId" value="" />
+        <option name="nativeBundle" value="all" />
+        <option name="title" value="AES-CTR Encryption" />
+        <option name="vendor" value="Fasilkom UI" />
+        <option name="version" value="" />
+        <option name="width" value="400" />
+      </options>
+    </properties>
+    <root id="root">
+      <element id="archive" name="block_cipher.jar">
+        <element id="module-output" name="block-cipher" />
+      </element>
+    </root>
+  </artifact>
+</component>
