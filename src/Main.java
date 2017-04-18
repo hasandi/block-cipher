@@ -21,7 +21,10 @@ public class Main extends Application {
     public static void main(String[] args) throws NoSuchPaddingException, NoSuchAlgorithmException, IllegalBlockSizeException, BadPaddingException, InvalidKeyException, IOException {
         launch(args);
     }
-
+    /*
+     * Start
+     * Setting scene to the stage.
+     */
     @Override
     public void start(Stage primaryStage) throws Exception {
         Parent root = FXMLLoader.load(getClass().getResource("block-cipher.fxml"));

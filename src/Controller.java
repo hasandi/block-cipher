@@ -22,7 +22,8 @@ import java.security.NoSuchAlgorithmException;
 
 
 /**
- * Created by kegap on 4/13/2017.
+ * Created by Kevin Ega Pratama(kegap) and Hasandi Patriawan on 4/13/2017.
+ * Controller for the FXML file.
  */
 public class Controller {
 
@@ -46,10 +47,15 @@ public class Controller {
 
     private String error;
 
-
+    /*
+     * Decrypt
+     * Call decryption method created at CTR.java
+     * Triggered when user click decrypt button.
+     */
     @FXML public void decrypt() throws Exception {
         CTR ctr = new CTR();
         try {
+            //Check either ciphertext file, output file, or key file is already specified or not.
             if((pathCiphertext.equals("")) | (pathKey.equals(""))) {
                 decryptionStatus.setText("Ciphertext file or key file is not specified");
                 decryptionStatus.setTextFill(Color.web("red"));
@@ -57,19 +63,26 @@ public class Controller {
                 decryptionStatus.setText("Output file is not specified");
                 decryptionStatus.setTextFill(Color.web("red"));
             }else {
+                //Do decryption using specified files.
                 ctr.doDecryption(pathCiphertext, pathKey, pathOutputDec);
-                decryptionStatus.setText("Decrypted successfully, Plaintext has been written to file.");
+                decryptionStatus.setText("Decrypted successfully, Plaintext has been written to file."); //set status
                 decryptionStatus.setTextFill(Color.web("black"));
                 reset("decrypt");
             }
         }catch(Exception e){
             e.printStackTrace();
         }
-        }
+    }
+
+    /*
+     * Encrypt
+     * Call encryption method created at CTR.java
+     * Triggered when user click encrypt button.
+     */
     @FXML public void encrypt(){
-        //hello.setText("Hello World Madafaka");
         CTR ctr = new CTR();
         try {
+            //Check either plaintext file, output file, or key file is already specified or not.
             if((pathPlaintext == "") | (pathKey == "")) {
                 encryptionStatus.setText("Plaintext file or key file is not specified");
                 encryptionStatus.setTextFill(Color.web("red"));
@@ -84,24 +97,21 @@ public class Controller {
             }
         } catch (InvalidKeyException e) {
             e.printStackTrace();
-        } catch (NoSuchAlgorithmException e) {
-            e.printStackTrace();
-        } catch (NoSuchPaddingException e) {
-            e.printStackTrace();
         } catch(IllegalArgumentException e){
-            encryptionStatus.setText("Key length must be 16 or 24 or 32 bytes");
-        } catch(IllegalBlockSizeException e) {
-            e.printStackTrace();
-        } catch (BadPaddingException e) {
-            e.printStackTrace();
+            encryptionStatus.setText("Key length must be 16 or 24 or 32 bytes"); //handles if key length is invalid/
         } catch (IOException e) {
-            e.printStackTrace();
             encryptionStatus.setText("IOException occured");
         } catch (Exception e) {
             e.printStackTrace();
         }
     }
 
+    /*
+    * Reset
+    * @args String type
+    * Reset variables used for encryption or decryption
+    * Triggered after encryption or decryption process completed.
+    */
     public void reset(String type){
         if(type == "encrypt") {
             pathPlaintext = "";
@@ -110,19 +120,21 @@ public class Controller {
             plaintextStatus.setText("no file selected.");
             keyStatus.setText("no file selected.");
             outputStatus.setText("no file created.");
-        }
-
-        if(type == "decrypt"){
+        }else if(type == "decrypt"){
             pathCiphertext="";
             pathKey="";
             pathOutputDec="";
             ciphertextStatus.setText("no file selected.");
             keyStatus.setText("no file selected.");
             outputDecStatus.setText("no file created.");
-
         }
     }
 
+    /*
+    * Set Path Plaintext
+    * Choose plaintext file using FileChooser class and set pathPlaintext variable with absolute path of the chosen file .
+    * Triggers when open button (plaintext) clicked.
+    */
     public void setPathPlaintext(){
         FileChooser fileChooser = new FileChooser();
         File file = fileChooser.showOpenDialog(new Stage());
@@ -133,6 +145,11 @@ public class Controller {
         }
     }
 
+    /*
+    * Set Path Key
+    * Choose key file using FileChooser class and set pathKey variable with absolute path of the chosen file.
+    * Triggers when open button (key) clicked.
+    */
     public void setPathKey(){
         FileChooser fileChooser = new FileChooser();
         File file = fileChooser.showOpenDialog(new Stage());
@@ -143,6 +160,10 @@ public class Controller {
         }
     }
 
+    /* Set Path Output
+     * Create output file using FileChooser class and set pathOutput variable with absolute path of the created file.
+     * Triggers when create button (output) clicked.
+     */
     public void setPathOutput(){
         FileChooser fileChooser = new FileChooser();
         File file = fileChooser.showSaveDialog(new Stage());
@@ -153,6 +174,11 @@ public class Controller {
         }
     }
 
+    /*
+    * Set Path Ciphertext
+    * Choose ciphertext file using FileChooser class and set pathCiphertext variable with absolute path of the chosen file .
+    * Triggers when open button (ciphertext) clicked.
+    */
     public void setCiphertextPath(){
         FileChooser fileChooser = new FileChooser();
         File file = fileChooser.showOpenDialog(new Stage());
@@ -163,6 +189,10 @@ public class Controller {
         }
     }
 
+    /* Set Path Output (Decryption)
+     * Create output file using FileChooser class and set pathOutputDec variable with absolute path of the created file.
+     * Triggers when create button (output-decryption) clicked.
+     */
     public void setPathOutputDec(){
         FileChooser fileChooser = new FileChooser();
         File file = fileChooser.showSaveDialog(new Stage());
@@ -173,6 +203,10 @@ public class Controller {
         }
     }
 
+    /* Load Decryption
+     * Load decryption window (scene)
+     * by creating a new scene and a new stage, setting the scene to the stage, then closing the old stage and showing the new stage
+     */
     @FXML
     public void loadDecryption(ActionEvent event) throws IOException {
         Parent parent_scene= FXMLLoader.load(getClass().getResource("decryption.fxml"));
@@ -183,6 +217,11 @@ public class Controller {
         newStage.show();
     }
 
+
+    /* Load Encryption
+     * Load Encryption window (scene)
+     * by creating a new scene and a new stage, setting the scene to the stage, then closing the old stage and showing the new stage
+     */
     @FXML
     public void loadEncryption() throws IOException {
         Parent parent_scene = FXMLLoader.load(getClass().getResource("encryption.fxml"));
@@ -193,6 +232,10 @@ public class Controller {
         newStage.show();
     }
 
+    /* Load Menu
+     * Load the main menu window (scene)
+     * by creating a new scene and a new stage, setting the scene to the stage, then closing the old stage and showing the new stage
+     */
     @FXML
     public void loadMenu() throws IOException {
         Parent parent_scene= FXMLLoader.load(getClass().getResource("block-cipher.fxml"));
