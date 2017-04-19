@@ -7,9 +7,84 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="34373b9a-12ba-4501-a52d-657815600e25" name="Default" comment="">
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/artifacts/AES_CTR_Encryption_and_Decryption/block_cipher.html" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/artifacts/AES_CTR_Encryption_and_Decryption/block_cipher.jnlp" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/artifacts/AES_CTR_Encryption_and_Decryption/bundles/AES-CTR Encryption and Decryption/AES-CTR Encryption and Decryption.ico" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/artifacts/AES_CTR_Encryption_and_Decryption/bundles/AES-CTR Encryption and Decryption/app/AES-CTR Encryption and Decryption.cfg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/artifacts/AES_CTR_Encryption_and_Decryption/bundles/AES-CTR Encryption and Decryption/runtime/COPYRIGHT" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/artifacts/AES_CTR_Encryption_and_Decryption/bundles/AES-CTR Encryption and Decryption/runtime/LICENSE" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/artifacts/AES_CTR_Encryption_and_Decryption/bundles/AES-CTR Encryption and Decryption/runtime/README.txt" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/artifacts/AES_CTR_Encryption_and_Decryption/bundles/AES-CTR Encryption and Decryption/runtime/THIRDPARTYLICENSEREADME-JAVAFX.txt" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/artifacts/AES_CTR_Encryption_and_Decryption/bundles/AES-CTR Encryption and Decryption/runtime/THIRDPARTYLICENSEREADME.txt" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/artifacts/AES_CTR_Encryption_and_Decryption/bundles/AES-CTR Encryption and Decryption/runtime/Welcome.html" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/artifacts/AES_CTR_Encryption_and_Decryption/bundles/AES-CTR Encryption and Decryption/runtime/bin/server/Xusage.txt" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/artifacts/AES_CTR_Encryption_and_Decryption/bundles/AES-CTR Encryption and Decryption/runtime/bin/server/classes.jsa" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/artifacts/AES_CTR_Encryption_and_Decryption/bundles/AES-CTR Encryption and Decryption/runtime/lib/accessibility.properties" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/artifacts/AES_CTR_Encryption_and_Decryption/bundles/AES-CTR Encryption and Decryption/runtime/lib/amd64/jvm.cfg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/artifacts/AES_CTR_Encryption_and_Decryption/bundles/AES-CTR Encryption and Decryption/runtime/lib/calendars.properties" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/artifacts/AES_CTR_Encryption_and_Decryption/bundles/AES-CTR Encryption and Decryption/runtime/lib/classlist" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/artifacts/AES_CTR_Encryption_and_Decryption/bundles/AES-CTR Encryption and Decryption/runtime/lib/cmm/CIEXYZ.pf" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/artifacts/AES_CTR_Encryption_and_Decryption/bundles/AES-CTR Encryption and Decryption/runtime/lib/cmm/GRAY.pf" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/artifacts/AES_CTR_Encryption_and_Decryption/bundles/AES-CTR Encryption and Decryption/runtime/lib/cmm/LINEAR_RGB.pf" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/artifacts/AES_CTR_Encryption_and_Decryption/bundles/AES-CTR Encryption and Decryption/runtime/lib/cmm/PYCC.pf" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/artifacts/AES_CTR_Encryption_and_Decryption/bundles/AES-CTR Encryption and Decryption/runtime/lib/cmm/sRGB.pf" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/artifacts/AES_CTR_Encryption_and_Decryption/bundles/AES-CTR Encryption and Decryption/runtime/lib/content-types.properties" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/artifacts/AES_CTR_Encryption_and_Decryption/bundles/AES-CTR Encryption and Decryption/runtime/lib/currency.data" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/artifacts/AES_CTR_Encryption_and_Decryption/bundles/AES-CTR Encryption and Decryption/runtime/lib/ext/meta-index" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/artifacts/AES_CTR_Encryption_and_Decryption/bundles/AES-CTR Encryption and Decryption/runtime/lib/flavormap.properties" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/artifacts/AES_CTR_Encryption_and_Decryption/bundles/AES-CTR Encryption and Decryption/runtime/lib/fontconfig.bfc" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/artifacts/AES_CTR_Encryption_and_Decryption/bundles/AES-CTR Encryption and Decryption/runtime/lib/fontconfig.properties.src" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/artifacts/AES_CTR_Encryption_and_Decryption/bundles/AES-CTR Encryption and Decryption/runtime/lib/fonts/LucidaBrightDemiBold.ttf" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/artifacts/AES_CTR_Encryption_and_Decryption/bundles/AES-CTR Encryption and Decryption/runtime/lib/fonts/LucidaBrightDemiItalic.ttf" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/artifacts/AES_CTR_Encryption_and_Decryption/bundles/AES-CTR Encryption and Decryption/runtime/lib/fonts/LucidaBrightItalic.ttf" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/artifacts/AES_CTR_Encryption_and_Decryption/bundles/AES-CTR Encryption and Decryption/runtime/lib/fonts/LucidaBrightRegular.ttf" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/artifacts/AES_CTR_Encryption_and_Decryption/bundles/AES-CTR Encryption and Decryption/runtime/lib/fonts/LucidaSansDemiBold.ttf" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/artifacts/AES_CTR_Encryption_and_Decryption/bundles/AES-CTR Encryption and Decryption/runtime/lib/fonts/LucidaSansRegular.ttf" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/artifacts/AES_CTR_Encryption_and_Decryption/bundles/AES-CTR Encryption and Decryption/runtime/lib/fonts/LucidaTypewriterBold.ttf" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/artifacts/AES_CTR_Encryption_and_Decryption/bundles/AES-CTR Encryption and Decryption/runtime/lib/fonts/LucidaTypewriterRegular.ttf" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/artifacts/AES_CTR_Encryption_and_Decryption/bundles/AES-CTR Encryption and Decryption/runtime/lib/hijrah-config-umalqura.properties" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/artifacts/AES_CTR_Encryption_and_Decryption/bundles/AES-CTR Encryption and Decryption/runtime/lib/images/cursors/cursors.properties" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/artifacts/AES_CTR_Encryption_and_Decryption/bundles/AES-CTR Encryption and Decryption/runtime/lib/images/cursors/invalid32x32.gif" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/artifacts/AES_CTR_Encryption_and_Decryption/bundles/AES-CTR Encryption and Decryption/runtime/lib/images/cursors/win32_CopyDrop32x32.gif" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/artifacts/AES_CTR_Encryption_and_Decryption/bundles/AES-CTR Encryption and Decryption/runtime/lib/images/cursors/win32_CopyNoDrop32x32.gif" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/artifacts/AES_CTR_Encryption_and_Decryption/bundles/AES-CTR Encryption and Decryption/runtime/lib/images/cursors/win32_LinkDrop32x32.gif" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/artifacts/AES_CTR_Encryption_and_Decryption/bundles/AES-CTR Encryption and Decryption/runtime/lib/images/cursors/win32_LinkNoDrop32x32.gif" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/artifacts/AES_CTR_Encryption_and_Decryption/bundles/AES-CTR Encryption and Decryption/runtime/lib/images/cursors/win32_MoveDrop32x32.gif" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/artifacts/AES_CTR_Encryption_and_Decryption/bundles/AES-CTR Encryption and Decryption/runtime/lib/images/cursors/win32_MoveNoDrop32x32.gif" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/artifacts/AES_CTR_Encryption_and_Decryption/bundles/AES-CTR Encryption and Decryption/runtime/lib/javafx.properties" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/artifacts/AES_CTR_Encryption_and_Decryption/bundles/AES-CTR Encryption and Decryption/runtime/lib/jfr/default.jfc" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/artifacts/AES_CTR_Encryption_and_Decryption/bundles/AES-CTR Encryption and Decryption/runtime/lib/jfr/profile.jfc" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/artifacts/AES_CTR_Encryption_and_Decryption/bundles/AES-CTR Encryption and Decryption/runtime/lib/jvm.hprof.txt" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/artifacts/AES_CTR_Encryption_and_Decryption/bundles/AES-CTR Encryption and Decryption/runtime/lib/logging.properties" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/artifacts/AES_CTR_Encryption_and_Decryption/bundles/AES-CTR Encryption and Decryption/runtime/lib/management/jmxremote.access" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/artifacts/AES_CTR_Encryption_and_Decryption/bundles/AES-CTR Encryption and Decryption/runtime/lib/management/jmxremote.password.template" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/artifacts/AES_CTR_Encryption_and_Decryption/bundles/AES-CTR Encryption and Decryption/runtime/lib/management/management.properties" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/artifacts/AES_CTR_Encryption_and_Decryption/bundles/AES-CTR Encryption and Decryption/runtime/lib/management/snmp.acl.template" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/artifacts/AES_CTR_Encryption_and_Decryption/bundles/AES-CTR Encryption and Decryption/runtime/lib/meta-index" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/artifacts/AES_CTR_Encryption_and_Decryption/bundles/AES-CTR Encryption and Decryption/runtime/lib/net.properties" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/artifacts/AES_CTR_Encryption_and_Decryption/bundles/AES-CTR Encryption and Decryption/runtime/lib/psfont.properties.ja" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/artifacts/AES_CTR_Encryption_and_Decryption/bundles/AES-CTR Encryption and Decryption/runtime/lib/psfontj2d.properties" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/artifacts/AES_CTR_Encryption_and_Decryption/bundles/AES-CTR Encryption and Decryption/runtime/lib/security/blacklist" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/artifacts/AES_CTR_Encryption_and_Decryption/bundles/AES-CTR Encryption and Decryption/runtime/lib/security/blacklisted.certs" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/artifacts/AES_CTR_Encryption_and_Decryption/bundles/AES-CTR Encryption and Decryption/runtime/lib/security/cacerts" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/artifacts/AES_CTR_Encryption_and_Decryption/bundles/AES-CTR Encryption and Decryption/runtime/lib/security/java.policy" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/artifacts/AES_CTR_Encryption_and_Decryption/bundles/AES-CTR Encryption and Decryption/runtime/lib/security/java.security" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/artifacts/AES_CTR_Encryption_and_Decryption/bundles/AES-CTR Encryption and Decryption/runtime/lib/security/javaws.policy" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/artifacts/AES_CTR_Encryption_and_Decryption/bundles/AES-CTR Encryption and Decryption/runtime/lib/security/trusted.libraries" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/artifacts/AES_CTR_Encryption_and_Decryption/bundles/AES-CTR Encryption and Decryption/runtime/lib/sound.properties" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/artifacts/AES_CTR_Encryption_and_Decryption/bundles/AES-CTR Encryption and Decryption/runtime/lib/tzdb.dat" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/artifacts/AES_CTR_Encryption_and_Decryption/bundles/AES-CTR Encryption and Decryption/runtime/lib/tzmappings" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/artifacts/AES_CTR_Encryption_and_Decryption/bundles/block_cipher.html" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/artifacts/AES_CTR_Encryption_and_Decryption/bundles/block_cipher.jnlp" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/artifacts/block_cipher/block_cipher.html" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/artifacts/block_cipher/block_cipher.jnlp" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/block-cipher/block-cipher.fxml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/block-cipher/decryption.fxml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/block-cipher/encryption.fxml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/block-cipher/input.txt" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/block-cipher/key.txt" afterPath="" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/Controller.java" afterPath="$PROJECT_DIR$/src/Controller.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/Main.java" afterPath="$PROJECT_DIR$/src/Main.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/README.md" afterPath="$PROJECT_DIR$/README.md" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -25,7 +100,7 @@
       <file leaf-file-name="Main.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/Main.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="187">
+            <state relative-caret-position="365">
               <caret line="25" column="34" lean-forward="false" selection-start-line="25" selection-start-column="34" selection-end-line="25" selection-end-column="34" />
               <folding>
                 <element signature="imports" expanded="true" />
@@ -34,37 +109,50 @@
           </provider>
         </entry>
       </file>
+      <file leaf-file-name="README.md" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/README.md">
+          <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
+            <state split_layout="SPLIT">
+              <first_editor relative-caret-position="119">
+                <caret line="7" column="18" lean-forward="true" selection-start-line="7" selection-start-column="18" selection-end-line="7" selection-end-column="18" />
+                <folding />
+              </first_editor>
+              <second_editor />
+            </state>
+          </provider>
+        </entry>
+      </file>
       <file leaf-file-name="encryption.fxml" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/encryption.fxml">
-          <provider editor-type-id="JavaFX-Scene-Builder">
-            <state />
-          </provider>
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="240">
+            <state relative-caret-position="527">
               <caret line="31" column="25" lean-forward="false" selection-start-line="31" selection-start-column="25" selection-end-line="31" selection-end-column="25" />
               <folding />
             </state>
+          </provider>
+          <provider editor-type-id="JavaFX-Scene-Builder">
+            <state />
           </provider>
         </entry>
       </file>
       <file leaf-file-name="block-cipher.fxml" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/block-cipher.fxml">
-          <provider editor-type-id="JavaFX-Scene-Builder">
-            <state />
-          </provider>
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="1037">
               <caret line="61" column="12" lean-forward="false" selection-start-line="61" selection-start-column="12" selection-end-line="61" selection-end-column="12" />
               <folding />
             </state>
           </provider>
+          <provider editor-type-id="JavaFX-Scene-Builder">
+            <state />
+          </provider>
         </entry>
       </file>
-      <file leaf-file-name="key.txt" pinned="false" current-in-tab="true">
+      <file leaf-file-name="key.txt" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/key.txt">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="0">
-              <caret line="0" column="32" lean-forward="true" selection-start-line="0" selection-start-column="32" selection-end-line="0" selection-end-column="32" />
+              <caret line="0" column="32" lean-forward="false" selection-start-line="0" selection-start-column="32" selection-end-line="0" selection-end-column="32" />
               <folding />
             </state>
           </provider>
@@ -72,22 +160,22 @@
       </file>
       <file leaf-file-name="decryption.fxml" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/decryption.fxml">
-          <provider editor-type-id="JavaFX-Scene-Builder">
-            <state />
-          </provider>
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="40">
+            <state relative-caret-position="170">
               <caret line="10" column="12" lean-forward="false" selection-start-line="10" selection-start-column="12" selection-end-line="10" selection-end-column="12" />
               <folding />
             </state>
+          </provider>
+          <provider editor-type-id="JavaFX-Scene-Builder">
+            <state />
           </provider>
         </entry>
       </file>
       <file leaf-file-name="AES.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/AES.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="136">
-              <caret line="8" column="15" lean-forward="false" selection-start-line="8" selection-start-column="14" selection-end-line="8" selection-end-column="15" />
+            <state relative-caret-position="17">
+              <caret line="1" column="4" lean-forward="false" selection-start-line="1" selection-start-column="4" selection-end-line="1" selection-end-column="4" />
               <folding />
             </state>
           </provider>
@@ -116,7 +204,7 @@
       <file leaf-file-name="Controller.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/Controller.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="2584">
+            <state relative-caret-position="3672">
               <caret line="236" column="37" lean-forward="false" selection-start-line="236" selection-start-column="37" selection-end-line="236" selection-end-column="37" />
               <folding>
                 <element signature="imports" expanded="true" />
@@ -163,6 +251,7 @@
         <option value="$PROJECT_DIR$/src/encryption.fxml" />
         <option value="$PROJECT_DIR$/src/Main.java" />
         <option value="$PROJECT_DIR$/src/Controller.java" />
+        <option value="$PROJECT_DIR$/README.md" />
       </list>
     </option>
   </component>
@@ -194,7 +283,7 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
-      <pane id="PackagesPane" />
+      <pane id="Scratches" />
       <pane id="ProjectPane">
         <subPane>
           <PATH>
@@ -224,7 +313,7 @@
         </subPane>
       </pane>
       <pane id="Scope" />
-      <pane id="Scratches" />
+      <pane id="PackagesPane" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -655,15 +744,16 @@
       <workItem from="1491884895721" duration="8000" />
       <workItem from="1492235453200" duration="12011000" />
       <workItem from="1492404991551" duration="3365000" />
-      <workItem from="1492531550430" duration="1345000" />
+      <workItem from="1492531550430" duration="2181000" />
+      <workItem from="1492594356592" duration="1152000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="22065000" />
+    <option name="totallyTimeSpent" value="24053000" />
   </component>
   <component name="ToolWindowManager">
-    <frame x="-8" y="-8" width="1382" height="784" extended-state="7" />
+    <frame x="-8" y="-8" width="1382" height="784" extended-state="6" />
     <editor active="true" />
     <layout>
       <window_info id="Palette" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
@@ -680,7 +770,7 @@
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Capture Tool" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Designer" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.18228404" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.18228404" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
@@ -743,17 +833,6 @@
     <option name="FILTER_TARGETS" value="false" />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/src/block-cipher.fxml">
-      <provider editor-type-id="JavaFX-Scene-Builder">
-        <state />
-      </provider>
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="170">
-          <caret line="10" column="209" lean-forward="false" selection-start-line="10" selection-start-column="209" selection-end-line="10" selection-end-column="209" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/AES.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="136">
@@ -808,14 +887,14 @@
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/block-cipher.fxml">
-      <provider editor-type-id="JavaFX-Scene-Builder">
-        <state />
-      </provider>
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="170">
           <caret line="10" column="219" lean-forward="false" selection-start-line="10" selection-start-column="209" selection-end-line="10" selection-end-column="219" />
           <folding />
         </state>
+      </provider>
+      <provider editor-type-id="JavaFX-Scene-Builder">
+        <state />
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/AES.java">
@@ -872,14 +951,14 @@
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/block-cipher.fxml">
-      <provider editor-type-id="JavaFX-Scene-Builder">
-        <state />
-      </provider>
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="170">
           <caret line="10" column="219" lean-forward="false" selection-start-line="10" selection-start-column="209" selection-end-line="10" selection-end-column="219" />
           <folding />
         </state>
+      </provider>
+      <provider editor-type-id="JavaFX-Scene-Builder">
+        <state />
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/AES.java">
@@ -996,52 +1075,15 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/block-cipher.fxml">
-      <provider editor-type-id="JavaFX-Scene-Builder">
-        <state />
-      </provider>
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1037">
-          <caret line="61" column="12" lean-forward="false" selection-start-line="61" selection-start-column="12" selection-end-line="61" selection-end-column="12" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/AES.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="136">
-          <caret line="8" column="15" lean-forward="false" selection-start-line="8" selection-start-column="14" selection-end-line="8" selection-end-column="15" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/Util.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="425">
-          <caret line="25" column="40" lean-forward="false" selection-start-line="25" selection-start-column="40" selection-end-line="25" selection-end-column="40" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/decryption.fxml">
-      <provider editor-type-id="JavaFX-Scene-Builder">
-        <state />
-      </provider>
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="40">
+        <state relative-caret-position="170">
           <caret line="10" column="12" lean-forward="false" selection-start-line="10" selection-start-column="12" selection-end-line="10" selection-end-column="12" />
           <folding />
         </state>
       </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/Main.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="187">
-          <caret line="25" column="34" lean-forward="false" selection-start-line="25" selection-start-column="34" selection-end-line="25" selection-end-column="34" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
+      <provider editor-type-id="JavaFX-Scene-Builder">
+        <state />
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/CTR.java">
@@ -1054,7 +1096,7 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/Controller.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="2584">
+        <state relative-caret-position="3672">
           <caret line="236" column="37" lean-forward="false" selection-start-line="236" selection-start-column="37" selection-end-line="236" selection-end-column="37" />
           <folding>
             <element signature="imports" expanded="true" />
@@ -1063,21 +1105,69 @@
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/encryption.fxml">
-      <provider editor-type-id="JavaFX-Scene-Builder">
-        <state />
-      </provider>
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="240">
+        <state relative-caret-position="527">
           <caret line="31" column="25" lean-forward="false" selection-start-line="31" selection-start-column="25" selection-end-line="31" selection-end-column="25" />
           <folding />
         </state>
+      </provider>
+      <provider editor-type-id="JavaFX-Scene-Builder">
+        <state />
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/key.txt">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
-          <caret line="0" column="32" lean-forward="true" selection-start-line="0" selection-start-column="32" selection-end-line="0" selection-end-column="32" />
+          <caret line="0" column="32" lean-forward="false" selection-start-line="0" selection-start-column="32" selection-end-line="0" selection-end-column="32" />
           <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/block-cipher.fxml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1037">
+          <caret line="61" column="12" lean-forward="false" selection-start-line="61" selection-start-column="12" selection-end-line="61" selection-end-column="12" />
+          <folding />
+        </state>
+      </provider>
+      <provider editor-type-id="JavaFX-Scene-Builder">
+        <state />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/AES.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="17">
+          <caret line="1" column="4" lean-forward="false" selection-start-line="1" selection-start-column="4" selection-end-line="1" selection-end-column="4" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Main.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="365">
+          <caret line="25" column="34" lean-forward="false" selection-start-line="25" selection-start-column="34" selection-end-line="25" selection-end-column="34" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Util.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="425">
+          <caret line="25" column="40" lean-forward="false" selection-start-line="25" selection-start-column="40" selection-end-line="25" selection-end-column="40" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/README.md">
+      <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
+        <state split_layout="SPLIT">
+          <first_editor relative-caret-position="119">
+            <caret line="7" column="18" lean-forward="true" selection-start-line="7" selection-start-column="18" selection-end-line="7" selection-end-column="18" />
+            <folding />
+          </first_editor>
+          <second_editor />
         </state>
       </provider>
     </entry>
